@@ -1,4 +1,4 @@
-import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { NewUser } from './components/NewUser';
 import { UsersData } from './components/UsersData';
 
