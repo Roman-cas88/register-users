@@ -1,11 +1,11 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { NewUser } from './components/NewUser';
+import { FormRegLog } from './components/FormRegLog';
 import { UsersData } from './components/UsersData';
 
 function App() {
   return (
     <div className="App">
-      <NewUser />
+      <FormRegLog />
       <UsersData />
     </div>
   );

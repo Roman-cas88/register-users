@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Container } from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
 import { usersData } from '../slices/users'
 import { InputForm } from './InputForm'
@@ -17,8 +17,8 @@ export const NewUser = () => {
     }
 
     return (
-        <Container>
-            <h2> New user: </h2>
+        <div className='regist'>
+            <h2> Sign up: </h2>
             <form onSubmit={addToData}>
                     <InputForm 
                         type="text" 
@@ -53,9 +53,8 @@ export const NewUser = () => {
                         placeholder="Confirm password"
                     />
 
-                    <Button type='submit'>Register</Button>
+                    <button className='submitButton' type='submit'>Register</button>
             </form>
-
-        </Container>
+        </div>
     )
     }
