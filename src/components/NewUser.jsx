@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, Container } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
-import { addUser } from '../slices/users'
+import { usersData } from '../slices/users'
 import { InputForm } from './InputForm'
 import { nanoid } from '@reduxjs/toolkit'
 
@@ -13,7 +13,7 @@ export const NewUser = () => {
         const formData = new FormData(e.target)
         const newUser = Object.fromEntries(formData.entries())
         newUser.id = nanoid();
-        dispatch(addUser(newUser));
+        dispatch(usersData(newUser));
     }
 
     return (
@@ -52,7 +52,7 @@ export const NewUser = () => {
                         name="confirmPassword" 
                         placeholder="Confirm password"
                     />
-                    
+
                     <Button type='submit'>Register</Button>
             </form>
 
