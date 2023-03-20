@@ -12,11 +12,13 @@ export const Login = () => {
             <InputForm 
                 type="email" 
                 name="email" 
+                label="Email"
                 placeholder="Email"
-            />
+                />
             <InputForm 
                 type="password" 
                 name="password" 
+                label="Password"
                 placeholder="Password"
             />
             <button className='submitButton' type='submit'>Login</button>
