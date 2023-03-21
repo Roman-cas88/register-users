@@ -21,6 +21,7 @@ export const InputForm = (props) => {
             onClick={props.onClick}
             onBlur={handleFocus}
             focus={focus.toString()}
+            onChange={props.onChange}
           />
           <p className='errMessage'>{props.errMessage}</p>
     </div>

@@ -1,5 +1,4 @@
-import React from 'react'
-import { Button } from 'react-bootstrap'
+import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { usersData } from '../slices/users'
 import { InputForm } from './InputForm'
@@ -16,6 +15,8 @@ export const NewUser = () => {
         dispatch(usersData(newUser));
     }
 
+    const [password, setPassword] = useState()
+
     return (
         <div className='regist'>
             <h3> Sign up: </h3>
@@ -27,7 +28,6 @@ export const NewUser = () => {
                         errMessage="First name could't incloude any numbers or special character!"
                         pattern="^[A-Za-z]{3,19}$"
                         placeholder="First Name"
-                        required="true"
                         />
                     <InputForm 
                         type="text" 
@@ -43,7 +43,6 @@ export const NewUser = () => {
                         label="Date of birth"
                         errMessage="You must be over 12 years old"
                         placeholder="Date of birth"
-                        required="true"
                         />
                     <InputForm 
                         type="email" 
@@ -60,10 +59,11 @@ export const NewUser = () => {
                         errMessage="Password should be 8-20 characters and include at least 1 letter and 1 number!"
                         pattern="^(?=.*[0-9])(?=.*[a-za-z])(?=.*[A-ZA-Z])[a-zA-Z0-9!@#$%^&*()-_)]{8,20}$"
                         placeholder="Password"
+                        onChange={(e) => setPassword(e.target.value)}
                         />
                     <InputForm 
                         id="eye"
-                        type="checkbox"    
+                        type="checkbox"  
                         />
                     <InputForm 
                         autocomplete='on' 
@@ -72,6 +72,7 @@ export const NewUser = () => {
                         label="Confirm password"
                         errMessage="Passwords don't match!"
                         placeholder="Confirm password"
+                        pattern={password}
                         />
 
                     <button className='submitButton' type='submit'>Register</button>
