@@ -76,7 +76,7 @@ export const NewUser = () => {
                     </div>
                     <InputForm 
                         autocomplete='on' 
-                        type="password" 
+                        type={type} 
                         name="confirmPassword" 
                         label="Confirm password"
                         errMessage="Passwords don't match!"
