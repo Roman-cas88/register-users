@@ -125,3 +125,13 @@ input:invalid[focus="true"] {
 input:invalid[focus="true"] ~ .errMessage {
     display: block;
 }
+.password{
+    position: relative;
+}
+.showPassword{
+    cursor: pointer;
+    color: #2d2300;
+    position: absolute;
+    top: 25px;
+    right: 5%;
+}

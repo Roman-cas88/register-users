@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux'
 import { usersData } from '../slices/users'
 import { InputForm } from './InputForm'
 import { nanoid } from '@reduxjs/toolkit'
+import { BsEyeSlash, BsEye } from 'react-icons/bs'
 
 export const NewUser = () => {
     const dispatch = useDispatch()
@@ -15,7 +16,13 @@ export const NewUser = () => {
         dispatch(usersData(newUser));
     }
 
-    const [password, setPassword] = useState()
+    const [checkPassword, setСheckPassword] = useState()
+
+    const [type, setType] = useState("password")
+
+    const showPassword = () => {
+        type === 'password' ? setType('text') : setType('password')
+    }
 
     return (
         <div className='regist'>
@@ -51,20 +58,22 @@ export const NewUser = () => {
                         errMessage="Should be a valid email address"
                         placeholder="Email"
                         />
-                    <InputForm 
-                        autocomplete='on' 
-                        type="password" 
-                        name="password" 
-                        label="Password"
-                        errMessage="Password should be 8-20 characters and include at least 1 letter and 1 number!"
-                        pattern="^(?=.*[0-9])(?=.*[a-za-z])(?=.*[A-ZA-Z])[a-zA-Z0-9!@#$%^&*()-_)]{8,20}$"
-                        placeholder="Password"
-                        onChange={(e) => setPassword(e.target.value)}
-                        />
-                    <InputForm 
-                        id="eye"
-                        type="checkbox"  
-                        />
+                    <div className='password'>
+                        <InputForm 
+                            autocomplete='on'
+                            type={type} 
+                            name="password" 
+                            label="Password"
+                            errMessage="Password should be 8-20 characters and include at least 1 letter and 1 number!"
+                            pattern="^(?=.*[0-9])(?=.*[a-za-z])(?=.*[A-ZA-Z])[a-zA-Z0-9!@#$%^&*()-_)]{8,20}$"
+                            placeholder="Password"
+                            onChange={(e) => setСheckPassword(e.target.value)}
+                            />
+                            <div className='showPassword' onClick={showPassword}>
+                                {type === "password" && <BsEye size={15}/>}
+                                {type === "text" && <BsEyeSlash size={15}/>}
+                            </div>
+                    </div>
                     <InputForm 
                         autocomplete='on' 
                         type="password" 
@@ -72,9 +81,8 @@ export const NewUser = () => {
                         label="Confirm password"
                         errMessage="Passwords don't match!"
                         placeholder="Confirm password"
-                        pattern={password}
+                        pattern={checkPassword}
                         />
-
                     <button className='submitButton' type='submit'>Register</button>
             </form>
         </div>
