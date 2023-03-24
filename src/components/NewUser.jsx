@@ -4,16 +4,21 @@ import { usersData } from '../slices/users'
 import { InputForm } from './InputForm'
 import { nanoid } from '@reduxjs/toolkit'
 import { BsEyeSlash, BsEye } from 'react-icons/bs'
+import { useSelector } from 'react-redux'
+
 
 export const NewUser = () => {
     const dispatch = useDispatch()
+    const data = useSelector(state => state.usersData.data)
 
     const addToData = (e) => {
         e.preventDefault();
         const formData = new FormData(e.target)
         const newUser = Object.fromEntries(formData.entries())
         newUser.id = nanoid();
-        dispatch(usersData(newUser));
+        const checkUser = data.find(element => element.email === newUser.email)
+        if (!checkUser) {dispatch(usersData(newUser))}
+        else {console.log('Wrong')}
     }
 
     const [checkPassword, setСheckPassword] = useState()
