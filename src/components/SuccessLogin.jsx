@@ -1,7 +1,7 @@
 import React from 'react'
 
-export const SuccessLogin = () => {
+export const SuccessLogin = (props) => {
   return (
-    <div className='succesMessage'>SuccessLogin</div>
+    <div className='succesMessage'>Hello {props.name}</div>
   )
 }

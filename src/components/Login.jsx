@@ -15,6 +15,7 @@ export const Login = () => {
         const checkEmail = data.find(element => element.email === login.email)
         const checkPassword = data.find(element => element.password === login.password)
         if (checkEmail && checkPassword) {
+            setLoginName(checkEmail.firstName)
             setSuccessLogin(true)
         }
         else {setStyledMessage({display:"block"})}
@@ -32,9 +33,11 @@ export const Login = () => {
         setStyledMessage({display:"none"})
     }
 
+    const [loginName, setLoginName] = useState()
+
   return (
     <div>
-        {successLogin && <SuccessLogin />}
+        {successLogin && <SuccessLogin name={loginName} />}
         {!successLogin &&
         <>
         <h3>Log in:</h3>
