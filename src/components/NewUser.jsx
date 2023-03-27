@@ -17,8 +17,8 @@ export const NewUser = () => {
         const newUser = Object.fromEntries(formData.entries())
         newUser.id = nanoid();
         const checkUser = data.find(element => element.email === newUser.email)
-        if (!checkUser) {dispatch(usersData(newUser))}
-        else {console.log('Wrong')}
+        if (!checkUser) {console.log('Success'); dispatch(usersData(newUser))}
+        else {console.log('Wrong'); setStyledMessage({display:"block"})}
     }
 
     const [checkPassword, setСheckPassword] = useState()
@@ -27,6 +27,11 @@ export const NewUser = () => {
 
     const showPassword = () => {
         type === 'password' ? setType('text') : setType('password')
+    }
+
+    const [styledMessage, setStyledMessage] = useState({display:"none"})
+    const handleChangeStyle = () => {
+        setStyledMessage({display:"none"})
     }
 
     return (
@@ -62,7 +67,9 @@ export const NewUser = () => {
                         label="Email"
                         errMessage="Should be a valid email address"
                         placeholder="Email"
+                        onChange={handleChangeStyle}
                         />
+                        <p style={styledMessage} className='emailErrMessage'>Email address is already registered!</p>
                     <div className='password'>
                         <InputForm 
                             autocomplete='on'
