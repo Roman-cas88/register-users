@@ -5,6 +5,7 @@ import { InputForm } from './InputForm'
 import { nanoid } from '@reduxjs/toolkit'
 import { BsEyeSlash, BsEye } from 'react-icons/bs'
 import { useSelector } from 'react-redux'
+import { SuccessReg } from './SuccessReg'
 
 
 export const NewUser = () => {
@@ -17,7 +18,7 @@ export const NewUser = () => {
         const newUser = Object.fromEntries(formData.entries())
         newUser.id = nanoid();
         const checkUser = data.find(element => element.email === newUser.email)
-        if (!checkUser) {console.log('Success'); dispatch(usersData(newUser))}
+        if (!checkUser) {console.log('Success'); dispatch(usersData(newUser)); setSuccessRegister(true)}
         else {console.log('Wrong'); setStyledMessage({display:"block"})}
     }
 
@@ -34,8 +35,13 @@ export const NewUser = () => {
         setStyledMessage({display:"none"})
     }
 
+    const [succesRegister, setSuccessRegister] = useState(false)
+
     return (
-        <div className='regist'>
+        <div>
+        {!succesRegister && <SuccessReg />}
+        {succesRegister && 
+            <>
             <h3> Sign up: </h3>
             <form onSubmit={addToData}>
                     <InputForm 
@@ -97,6 +103,8 @@ export const NewUser = () => {
                         />
                     <button className='submitButton' type='submit'>Register</button>
             </form>
+            </>
+        }
         </div>
     )
     }

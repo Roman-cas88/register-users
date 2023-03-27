@@ -3,9 +3,7 @@
     flex-direction: column;
     justify-content: space-between;
     text-align: center;
-    min-height:300px;
-    max-height:100vh;
-    max-width:250px;
+    max-width:300px;
     border: solid 3px #f6bc609d;
     border-radius: 10px;
     background: linear-gradient(
@@ -13,6 +11,12 @@
     );
     box-shadow: 0px 0px 25px -1px #fcdc6980;
     padding: 10px;
+}
+.succesMessage{
+    width:300px;
+    margin: 20px 0;
+    color: #fcdc6980; 
+    font-size: large;
 }
 .switchButton{
    width: 50%;
@@ -35,15 +39,15 @@ h3 {
     color: #fcdc6980; 
 }
 
-.login form {
+form {
     margin-top: 20px;
     color: #fcdc6951; 
     display: flex;
     flex-direction: column;
     text-align: left;
 }
-.login input {
-    width: 100%;
+input {
+    width: 275px;
     background-color:#faf8f223;
     border: solid 2px #2d23008e;
     margin-bottom: 10px;
@@ -51,7 +55,7 @@ h3 {
 ::placeholder {
     color: #2d2300;
 }
-.login input:hover {
+input:hover {
     box-shadow: 0px 0px 15px -1px #fcdc6980;
     background-color:#fce490e7;
     border: solid 2px #fbfaf8;
@@ -70,7 +74,7 @@ h3 {
     font-weight: bolder;
 
 }
-.regist form {
+/* .regist form {
     color: #fcdc6951; 
     display: flex;
     flex-direction: column;
@@ -81,7 +85,7 @@ h3 {
     background-color:#faf8f223;
     border: solid 2px #2d23008e;
     color:#fce79e8e;
-}
+} */
 input::-webkit-input-placeholder {
     color:#fce79e8e;
 }
@@ -89,14 +93,14 @@ input:hover::-webkit-input-placeholder {
     color:black;
 }
 input:focus::-webkit-input-placeholder {
-    color:blac;
+    color:black;
 }
-.regist input:hover {
+/* .regist input:hover {
     box-shadow: 0px 0px 15px -1px #fcdc6980;
     background-color:#fce490e7;
     border: solid 2px #fbfaf8;
     color: black;
-}
+} */
 input:autofill {
     border: solid 2px #fce490e7;
     box-shadow: 0 0 0 30px #7B4D44 inset !important;

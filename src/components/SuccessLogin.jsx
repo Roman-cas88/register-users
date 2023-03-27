@@ -2,6 +2,6 @@ import React from 'react'
 
 export const SuccessLogin = () => {
   return (
-    <div>SuccessLogin</div>
+    <div className='succesMessage'>SuccessLogin</div>
   )
 }

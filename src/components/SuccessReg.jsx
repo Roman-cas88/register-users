@@ -2,6 +2,9 @@ import React from 'react'
 
 export const SuccessReg = () => {
   return (
-    <div>SuccessReg</div>
+    <div className='succesMessage'>
+      <p>Thank You for registration!</p>
+      <p>Please, Log in to the system</p>
+    </div>
   )
 }

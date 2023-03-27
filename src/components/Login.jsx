@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { InputForm } from './InputForm'
 import { BsEyeSlash, BsEye } from 'react-icons/bs'
+import { SuccessLogin } from './SuccessLogin'
 
 
 export const Login = () => {
@@ -15,14 +16,20 @@ export const Login = () => {
         type === 'password' ? setType('text') : setType('password')
     }
 
+    const [successLogin, setSuccessLogin] = useState(false)
+
   return (
-    <div className='login'>
+    <div>
+        {!successLogin && <SuccessLogin />}
+        {successLogin &&
+        <>
         <h3>Log in:</h3>
         <form onSubmit={submit}>
             <InputForm 
                 type="email" 
                 name="email" 
                 label="Email"
+                errMessage="Error Message"
                 placeholder="Email"
                 />
             <div className='password'>
@@ -30,7 +37,7 @@ export const Login = () => {
                     type={type} 
                     name="password" 
                     label="Password"
-                    errMessage="Password should be 8-20 characters and include at least 1 letter and 1 number!"
+                    errMessage="Error Message"
                     pattern="^(?=.*[0-9])(?=.*[a-za-z])(?=.*[A-ZA-Z])[a-zA-Z0-9!@#$%^&*()-_)]{8,20}$"
                     placeholder="Password"
                     />
@@ -40,8 +47,9 @@ export const Login = () => {
                 </div>
             </div>
             <button className='submitButton' type='submit'>Login</button>
-        </form>
-        
+        </form>        
+</>
+}
     </div>
   )
 }

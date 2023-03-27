@@ -19,8 +19,8 @@ export const FormRegLog = () => {
   return (
     <div className='formReg'>
         <div>
-                <button className='switchButton' onClick={showLogin}>Log in</button>
-                <button className='switchButton' onClick={showRegist}>Sign up</button>
+          <button className='switchButton' id='logButton' onClick={showLogin}>Log in</button>
+          <button className='switchButton' id='regButton' onClick={showRegist}>Sign up</button>
         </div>
         {showLog && <Login />}
         {showReg && <NewUser />}
