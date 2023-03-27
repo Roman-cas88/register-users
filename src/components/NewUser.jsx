@@ -18,8 +18,11 @@ export const NewUser = () => {
         const newUser = Object.fromEntries(formData.entries())
         newUser.id = nanoid();
         const checkUser = data.find(element => element.email === newUser.email)
-        if (!checkUser) {console.log('Success'); dispatch(usersData(newUser)); setSuccessRegister(true)}
-        else {console.log('Wrong'); setStyledMessage({display:"block"})}
+        if (!checkUser) {
+            dispatch(usersData(newUser)); 
+            setSuccessRegister(true)
+        }
+        else {setStyledMessage({display:"block"})}
     }
 
     const [checkPassword, setСheckPassword] = useState()
@@ -39,8 +42,8 @@ export const NewUser = () => {
 
     return (
         <div>
-        {!succesRegister && <SuccessReg />}
-        {succesRegister && 
+        {succesRegister && <SuccessReg />}
+        {!succesRegister && 
             <>
             <h3> Sign up: </h3>
             <form onSubmit={addToData}>
