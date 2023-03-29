@@ -8,9 +8,11 @@ import { logged } from '../slices/users'
 
 
 export const Login = () => {
+    const dispatch = useDispatch()
     const data = useSelector(state => state.users.data)
     const loginId = useSelector(state => state.users.login)
-    const dispatch = useDispatch()
+
+    const loggedUser = data.find(user => user.id === loginId)
 
     const submit = (e) => {
         e.preventDefault();
@@ -19,8 +21,6 @@ export const Login = () => {
         const checkEmail = data.find(element => element.email === login.email)
         const checkPassword = data.find(element => element.password === login.password)
         if (checkEmail && checkPassword) {
-            setLoginName(checkEmail.firstName)
-            setSuccessLogin(true)
             dispatch(logged(checkEmail.id))
         }
         else {setStyledMessage({display:"block"})}
@@ -31,19 +31,22 @@ export const Login = () => {
         type === 'password' ? setType('text') : setType('password')
     }
 
-    const [successLogin, setSuccessLogin] = useState(false)
 
     const [styledMessage, setStyledMessage] = useState({display:"none"})
     const handleChangeStyle = () => {
         setStyledMessage({display:"none"})
     }
 
-    const [loginName, setLoginName] = useState()
-
   return (
     <div>
-        {successLogin && <SuccessLogin name={loginName} />}
-        {!successLogin &&
+        {loggedUser !== undefined && 
+        <div>
+            <SuccessLogin name={loggedUser.firstName} />
+            <button className='submitButton' onClick={() => dispatch(logged())}>
+                log out
+            </button>
+        </div>}
+        {loggedUser === undefined &&
         <>
         <h3>Log in:</h3>
         <form onSubmit={submit}>
@@ -75,7 +78,6 @@ export const Login = () => {
         </form>        
 </>
 }
-<button onClick={console.log(loginId)}>Check</button>
     </div>
   )
 }
