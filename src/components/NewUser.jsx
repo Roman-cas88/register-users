@@ -1,16 +1,15 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { usersData } from '../slices/users'
+import { useDispatch, useSelector } from 'react-redux'
+import { addUser } from '../slices/users'
 import { InputForm } from './InputForm'
 import { nanoid } from '@reduxjs/toolkit'
 import { BsEyeSlash, BsEye } from 'react-icons/bs'
-import { useSelector } from 'react-redux'
 import { SuccessReg } from './SuccessReg'
 
 
 export const NewUser = () => {
     const dispatch = useDispatch()
-    const data = useSelector(state => state.usersData.data)
+    const data = useSelector(state => state.users.data)
 
     const addToData = (e) => {
         e.preventDefault();
@@ -19,7 +18,7 @@ export const NewUser = () => {
         newUser.id = nanoid();
         const checkUser = data.find(element => element.email === newUser.email)
         if (!checkUser) {
-            dispatch(usersData(newUser)); 
+            dispatch(addUser(newUser)); 
             setSuccessRegister(true)
         }
         else {setStyledMessage({display:"block"})}

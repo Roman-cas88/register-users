@@ -2,11 +2,15 @@ import React, { useState } from 'react'
 import { InputForm } from './InputForm'
 import { BsEyeSlash, BsEye } from 'react-icons/bs'
 import { SuccessLogin } from './SuccessLogin'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { logged } from '../slices/users'
+
 
 
 export const Login = () => {
-    const data = useSelector(state => state.usersData.data)
+    const data = useSelector(state => state.users.data)
+    const loginId = useSelector(state => state.users.login)
+    const dispatch = useDispatch()
 
     const submit = (e) => {
         e.preventDefault();
@@ -17,6 +21,7 @@ export const Login = () => {
         if (checkEmail && checkPassword) {
             setLoginName(checkEmail.firstName)
             setSuccessLogin(true)
+            dispatch(logged(checkEmail.id))
         }
         else {setStyledMessage({display:"block"})}
     }
@@ -70,6 +75,7 @@ export const Login = () => {
         </form>        
 </>
 }
+<button onClick={console.log(loginId)}>Check</button>
     </div>
   )
 }
