@@ -5,6 +5,7 @@ import { InputForm } from './InputForm'
 import { nanoid } from '@reduxjs/toolkit'
 import { BsEyeSlash, BsEye } from 'react-icons/bs'
 import { SuccessReg } from './SuccessReg'
+import { DatePicker } from './DatePicker'
 
 
 export const NewUser = () => {
@@ -16,12 +17,18 @@ export const NewUser = () => {
         const formData = new FormData(e.target)
         const newUser = Object.fromEntries(formData.entries())
         newUser.id = nanoid();
+        newUser.birthday = birthday;
         const checkUser = data.find(element => element.email === newUser.email)
         if (!checkUser) {
             dispatch(addUser(newUser)); 
             setSuccessRegister(true)
         }
         else {setStyledMessage({display:"block"})}
+    }
+
+    const [birthday, setBirthday] = useState()
+    const pickBirthday = (info) => {
+        setBirthday(info)
     }
 
     const [checkPassword, setСheckPassword] = useState()
@@ -62,13 +69,7 @@ export const NewUser = () => {
                         pattern="^[A-Za-z]{3,19}$"
                         placeholder="Last Name"
                         />
-                    <InputForm 
-                        type="date" 
-                        name="birthdate" 
-                        label="Date of birth"
-                        errMessage="You must be over 12 years old"
-                        placeholder="Date of birth"
-                        />
+                    <DatePicker pickBirthday={pickBirthday}/>
                     <InputForm 
                         type="email" 
                         name="email" 
