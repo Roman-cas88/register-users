@@ -46,7 +46,8 @@ export const DatePicker = ({ pickBirthday }) => {
     }, [year, month, day])
 
   return (
-    <div>
+    <div className='datepicker'>
+        <p>Date of birth</p>
         <select onChange={selectYear}>
             <option>Year</option>
             {yearsOption.map((option, index) => {
