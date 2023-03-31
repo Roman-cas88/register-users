@@ -10,8 +10,8 @@ export const DatePicker = ({ pickBirthday }) => {
     const monthsArray = Array.from({length: 12}, (_, index) => index + 1)
     const monthsOption = monthsArray.reverse()
     
-    const [month, setMonth] = useState(2000)
-    const [year, setYear] = useState(1)
+    const [month, setMonth] = useState(1)
+    const [year, setYear] = useState(2000)
     const [day, setDay] = useState()
     
     let defaultDays = Array.from({length: 31}, (_, index) => index + 1).reverse()
