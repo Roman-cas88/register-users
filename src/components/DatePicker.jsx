@@ -10,27 +10,24 @@ export const DatePicker = ({ pickBirthday }) => {
     const monthsArray = Array.from({length: 12}, (_, index) => index + 1)
     const monthsOption = monthsArray.reverse()
     
-    const [month, setMonth] = useState()
-    const [year, setYear] = useState()
+    const [month, setMonth] = useState(2000)
+    const [year, setYear] = useState(1)
     const [day, setDay] = useState()
     
-    let days = 31
-    const lenghthOfMonth = () => {
-        days = new Date(year, month, 0).getDate()
-    }
+    let defaultDays = Array.from({length: 31}, (_, index) => index + 1).reverse()
+    const [daysOption, setDaysOption] = useState(defaultDays)
     
-    const daysArray = Array.from({length: days}, (_, index) => index + 1)
-    const daysOption = daysArray.reverse()
+    useEffect(() => {
+        const days = new Date(year, month, 0).getDate()
+        const daysArray = Array.from({length: days}, (_, index) => index + 1)
+        setDaysOption(daysArray.reverse())
+    },[year, month])
  
-  
-
-    const selectYear = (e) => {
+   const selectYear = (e) => {
         setYear(e.target.value)
-        lenghthOfMonth()
     }
     const selectMonth = (e) => {
         setMonth(e.target.value)
-        lenghthOfMonth()
     }
     const selectDay = (e) => {
         setDay(e.target.value)
